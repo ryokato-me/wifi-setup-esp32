@@ -14,7 +14,7 @@ private:
     String _hostName;
     unsigned long _prevCheckMills;
     unsigned long _wifiCheckIntervalMills;
-    bool checkWifiConnection();
+    bool isWifiDisconnected();
 };
 
 #endif

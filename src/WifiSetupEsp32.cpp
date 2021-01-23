@@ -38,12 +38,19 @@ void WifiSetupEsp32::wifiConnect(){
 
 void WifiSetupEsp32::wifiCheckLoop() {
     unsigned long curr = millis();
-    if ((curr - _prevCheckMills) >= _wifiCheckIntervalMills && !checkWifiConnection()) {
-        wifiConnect();
+    if ((curr - _prevCheckMills) >= _wifiCheckIntervalMills) {
+        Serial.print("Check WiFi connection...");
+        if (isWifiDisconnected()) {
+            Serial.println("");
+            Serial.print("WiFi disconnected. Start connecting.");
+            wifiConnect();
+        } else {
+            Serial.println("OK");
+        }
         _prevCheckMills = curr;
     }
 }
 
-bool WifiSetupEsp32::checkWifiConnection() {
+bool WifiSetupEsp32::isWifiDisconnected() {
     return WiFi.status() == WL_DISCONNECTED || WiFi.status() == WL_IDLE_STATUS;
 }

@@ -1,0 +1,11 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+WifiSetupEsp32		KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+wifiConnect         KEYWORD2
+wifiCheckLoop       KEYWORD2
+checkWifiConnection	KEYWORD2

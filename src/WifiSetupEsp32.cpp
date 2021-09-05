@@ -5,11 +5,12 @@
 #include <WiFi.h>
 #include "WifiSetupEsp32.h"
 
-WifiSetupEsp32::WifiSetupEsp32(String ssid, String password, String hostName, unsigned long wifiCheckIntervalMills)
+WifiSetupEsp32::WifiSetupEsp32(String ssid, String password, String hostName, IPAddress ip,  unsigned long wifiCheckIntervalMills)
 {
     _ssid = ssid;
     _password = password;
     _hostName = hostName;
+    _ip = ip;
     _prevCheckMills = 0;
     _wifiCheckIntervalMills = wifiCheckIntervalMills;
 }
@@ -24,7 +25,7 @@ void WifiSetupEsp32::wifiConnect(){
         Serial.println(_ssid.c_str());
 
         // Need to set host name.
-        WiFi.config(INADDR_NONE, INADDR_NONE, INADDR_NONE);
+        WiFi.config(_ip, INADDR_NONE, INADDR_NONE);
         WiFi.setHostname(_hostName.c_str());
 
         WiFi.begin(_ssid.c_str(), _password.c_str());
